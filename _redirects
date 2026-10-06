@@ -1,0 +1,9 @@
+# Netlify redirect / access rules
+#
+# The repository root IS the publish directory (netlify.toml: publish = "."),
+# which puts .git/ inside the deployed tree. Netlify normally strips it, but
+# this is a belt-and-braces guard so repository internals can never be fetched
+# over HTTP whatever the host does with dotfiles.
+#
+# Anything under /.git/ returns 404 rather than being served.
+/.git/*  /  404

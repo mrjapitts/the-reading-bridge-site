@@ -1,0 +1,18 @@
+# Force LF in the working tree for every text file.
+#
+# Why this matters here: build/generate.py refuses to write any file containing a
+# CR, and the generator's byte-identity check depends on LF endings. Without this
+# file, a Windows clone with core.autocrlf=true would check the HTML out as CRLF
+# and the build would fail (or silently drift).
+* text=auto eol=lf
+
+# Never let git touch binary files.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.woff binary
+*.woff2 binary
+*.wasm binary
+*.webp binary

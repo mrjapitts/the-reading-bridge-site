@@ -1,0 +1,20 @@
+<main id="main">
+
+<section>
+  <div class="wrap">
+    <div class="section-head"><span class="eyebrow">{{ site.pages.assessment.eyebrow }}</span><h2>{{ site.assessment.title }}</h2><p class="lead">{{ site.assessment.reassurance }}</p></div>
+    <div class="confirm">{{ site.pages.assessment.reassurance_note }}</div>
+    <div class="grid grid-2 my-15">
+      <div class="card"><h3>{{ site.assessment.duration }}</h3><p class="micro">{{ site.assessment.duration_detail }}</p></div>
+      <div class="card"><h3>{{ site.pages.assessment.childled_heading }}</h3><p class="micro">{{ site.assessment.control_note }}</p></div>
+    </div>
+    <h3>{{ site.pages.assessment.tools_heading }}</h3>
+    <ul class="tools">{% for item in site.assessment.tools %}<li><strong>{{ item.name }}</strong><span>{{ item.what }}</span></li>{% endfor %}</ul>
+    <div class="confirm">{{ site.assessment.tool_note }}</div>
+    <h3>{{ site.pages.assessment.prep_heading }}</h3>
+    <ul class="checklist">{% for item in site.assessment.prep %}<li><strong>{{ item.title }}</strong><span>{{ item.text }}</span></li>{% endfor %}</ul>
+    <p>{{ site.assessment.next_steps }}</p>
+    <p class="mt-1"><a class="btn btn-primary" href="book.html">{{ site.cta.book_free_session }}</a></p>
+  </div>
+</section>
+</main>

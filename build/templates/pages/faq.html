@@ -1,0 +1,12 @@
+<main id="main">
+
+<section>
+  <div class="wrap">
+    <div class="section-head"><span class="eyebrow">{{ site.pages.faq.eyebrow }}</span><h2>{{ site.pages.faq.heading }}</h2><p class="lead">{{ site.pages.faq.lead }}</p></div>
+    {% for item in site.faq %}<details class="faq-item">
+  <summary>{{ item.q }}</summary>
+  <div class="answer">{{ item.a | html }}</div>
+</details>{% endfor %}
+  </div>
+</section>
+</main>

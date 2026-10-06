@@ -1,0 +1,550 @@
+# =========================================================================
+# Decap CMS - The Reading Bridge content editor
+#
+# Free editor for the website. Backend = Netlify Git Gateway.
+#
+# This file ONLY becomes active AFTER the site is on a free Netlify account
+# with Identity + Git Gateway switched on. Until then it is pre-wired only -
+# it does nothing. See README.md, section "Editing content with a form".
+#
+# Every field below maps to a real key in one of the two content files:
+#   content/site.json       (the whole website)
+#   content/policies.json   (the four policy bodies)
+# Editing a field rewrites that JSON, which triggers a Netlify build that runs
+# build/generate.py and regenerates the 13 HTML pages. Nothing is lost on save
+# as long as a key has a field here: Decap DROPS keys it has no field for, so if
+# you add a key to a content file, add a field for it here too.
+# =========================================================================
+
+backend:
+  name: git-gateway
+  branch: main
+
+# The live site has no upload button, so nothing is uploaded through the CMS.
+# Left as a sensible default for when image editing is added later.
+media_folder: "assets/uploads"
+public_folder: "assets/uploads"
+
+collections:
+  - name: "site"
+    label: "Website content"
+    description: "Every word, price and note on the site, from content/site.json."
+    file: "content/site.json"
+    format: "json"
+    editor:
+      preview: false
+    fields:
+
+      # ---- Owner's own guide (keep this in the file) ----
+      - label: "Self-edit guide (this note sits at the top of site.json)"
+        name: "_readme"
+        widget: "string"
+
+      # ================= BUSINESS =================
+      - label: "Business"
+        name: "business"
+        widget: "object"
+        fields:
+          - { label: "Business name", name: "name", widget: "string" }
+          - { label: "Under-descriptor line", name: "descriptor", widget: "string" }
+          - { label: "Strapline", name: "strapline", widget: "string" }
+          - { label: "Closing tagline", name: "closing_tagline", widget: "string" }
+          - { label: "Email address (TO CONFIRM)", name: "email", widget: "string" }
+          - label: "_email - confirmation note for you"
+            name: "_email"
+            widget: "textarea"
+          - { label: "Phone number", name: "phone", widget: "string" }
+          - { label: "Area served (one line)", name: "area_served", widget: "string" }
+          - label: "Areas served (one per line)"
+            name: "areas_served_list"
+            widget: "list"
+          - { label: "Domain", name: "domain", widget: "string" }
+          - label: "Key stages served (one per line)"
+            name: "key_stages_served"
+            widget: "list"
+          - { label: "Age range for phonics catch-up", name: "age_range_phonics", widget: "string" }
+          - label: "_key_stages - confirmation note for you"
+            name: "_key_stages"
+            widget: "textarea"
+
+      # ================= HERO (home top) =================
+      - label: "Hero (home page top)"
+        name: "hero"
+        widget: "object"
+        fields:
+          - { label: "Eyebrow (small line above headline)", name: "eyebrow", widget: "string" }
+          - { label: "Headline (big text)", name: "headline", widget: "string" }
+          - { label: "Sub-headline", name: "subheadline", widget: "string" }
+          - { label: "Supporting text", name: "supporting_text", widget: "textarea" }
+          - label: "Primary button (the main button)"
+            name: "primary_button"
+            widget: "object"
+            fields:
+              - { label: "Button text", name: "label", widget: "string" }
+              - { label: "Where it goes (page)", name: "href", widget: "string" }
+          - label: "Secondary button"
+            name: "secondary_button"
+            widget: "object"
+            fields:
+              - { label: "Button text", name: "label", widget: "string" }
+              - { label: "Where it goes (page)", name: "href", widget: "string" }
+
+      # ================= CREDIBILITY BULLETS =================
+      - label: "Credibility bullets (home page)"
+        name: "credibility_bullets"
+        widget: "list"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Text", name: "text", widget: "textarea" }
+
+      # ================= OWNER =================
+      - label: "About the owner (owner.html)"
+        name: "owner"
+        widget: "object"
+        fields:
+          - { label: "Name", name: "name", widget: "string" }
+          - { label: "Qualifications line", name: "qualifications", widget: "string" }
+          - { label: "Intro", name: "bio_intro", widget: "textarea" }
+          - { label: "Extra details", name: "bio_extra", widget: "textarea" }
+          - { label: "Signature", name: "signature", widget: "string" }
+
+      # ================= SERVICES =================
+      - label: "Services (services.html + home page)"
+        name: "services"
+        widget: "list"
+        summary: "{{fields.title}}"
+        fields:
+          - { label: "Service title", name: "title", widget: "string" }
+          - { label: "Summary", name: "summary", widget: "textarea" }
+          - { label: "Details", name: "details", widget: "textarea" }
+          - { label: "Format", name: "format", widget: "string" }
+          - { label: "Ages (optional - leave blank unless this service lists an age range)", name: "ages", widget: "string", required: false }
+
+      # ================= ASSESSMENT =================
+      - label: "The Assessment Day (assessment.html)"
+        name: "assessment"
+        widget: "object"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Reassurance text", name: "reassurance", widget: "textarea" }
+          - { label: "Duration", name: "duration", widget: "string" }
+          - { label: "Duration detail", name: "duration_detail", widget: "textarea" }
+          - label: "Assessment instruments (list)"
+            name: "tools"
+            widget: "list"
+            fields:
+              - { label: "Instrument name", name: "name", widget: "string" }
+              - { label: "What happens", name: "what", widget: "textarea" }
+          - label: "Preparation tips (list)"
+            name: "prep"
+            widget: "list"
+            fields:
+              - { label: "Tip title", name: "title", widget: "string" }
+              - { label: "Tip text", name: "text", widget: "textarea" }
+          - { label: "Control note", name: "control_note", widget: "textarea" }
+          - { label: "Next steps", name: "next_steps", widget: "textarea" }
+          - { label: "Tool note (TO CONFIRM)", name: "tool_note", widget: "textarea" }
+          - label: "_tool_note - confirmation note"
+            name: "_tool_note"
+            widget: "textarea"
+
+      # ================= PRICING =================
+      - label: "Pricing (pricing.html) - prices are placeholders"
+        name: "pricing"
+        widget: "object"
+        fields:
+          - { label: "Status", name: "status", widget: "string" }
+          - { label: "Heading", name: "heading", widget: "string" }
+          - { label: "Intro text", name: "intro", widget: "textarea" }
+          - { label: "Note", name: "note", widget: "textarea" }
+          - label: "Pricing cards (list)"
+            name: "cards"
+            widget: "list"
+            summary: "{{fields.name}}"
+            fields:
+              - { label: "Card name", name: "name", widget: "string" }
+              - { label: "Price (TO CONFIRM)", name: "price", widget: "string" }
+              - { label: "Per ...", name: "per", widget: "string" }
+              - { label: "Card note", name: "note", widget: "string" }
+          - { label: "Call to action text", name: "call_to_action", widget: "string" }
+
+      # ================= BOOKING =================
+      - label: "Booking form labels (book.html)"
+        name: "booking"
+        widget: "object"
+        fields:
+          - { label: "Heading", name: "heading", widget: "string" }
+          - { label: "Sub-heading", name: "subheading", widget: "string" }
+          - { label: "Note", name: "note", widget: "textarea" }
+          - { label: "Preferred day label", name: "preferred_day", widget: "string" }
+          - { label: "Preferred time label", name: "preferred_time", widget: "string" }
+          - { label: "Subject label", name: "subject", widget: "string" }
+          - { label: "Key stage label", name: "key_stage", widget: "string" }
+          - { label: "Delivery label", name: "delivery", widget: "string" }
+
+      # ================= FAQ =================
+      - label: "FAQ (faq.html)"
+        name: "faq"
+        widget: "list"
+        summary: "{{fields.q}}"
+        fields:
+          - { label: "Question", name: "q", widget: "string" }
+          - { label: "Answer", name: "a", widget: "textarea" }
+
+      # ================= CONTACT =================
+      - label: "Contact section"
+        name: "contact"
+        widget: "object"
+        fields:
+          - { label: "Heading", name: "heading", widget: "string" }
+          - { label: "Sub-heading", name: "subheading", widget: "string" }
+          - { label: "Phone label", name: "phone_label", widget: "string" }
+          - { label: "Email label", name: "email_label", widget: "string" }
+
+      # ================= AREA =================
+      - label: "Area section (area.html)"
+        name: "area_section"
+        widget: "object"
+        fields:
+          - { label: "Heading", name: "heading", widget: "string" }
+          - { label: "Text", name: "text", widget: "textarea" }
+          - label: "Area cards (one per county or region shown)"
+            name: "cards"
+            widget: "list"
+            summary: "{{fields.name}}"
+            fields:
+              - { label: "Area name", name: "name", widget: "string" }
+              - { label: "Card text", name: "text", widget: "textarea" }
+
+      # ================= NAVIGATION =================
+      - label: "Main menu (header, and the footer 'Site' column)"
+        name: "nav"
+        widget: "list"
+        summary: "{{fields.label}}"
+        fields:
+          - { label: "Menu text", name: "label", widget: "string" }
+          - { label: "Page it opens", name: "href", widget: "string" }
+
+      # ================= HEADER CHROME =================
+      - label: "Header extras (accessibility labels and the menu button)"
+        name: "chrome"
+        widget: "object"
+        fields:
+          - { label: "Skip link text (top of every page, for keyboard users)", name: "skip_link", widget: "string" }
+          - { label: "Browser theme colour", name: "theme_color", widget: "string" }
+          - { label: "Home-link label (screen readers only)", name: "brand_aria", widget: "string" }
+          - { label: "Logo alt text", name: "logo_alt", widget: "string" }
+          - { label: "Emblem alt text", name: "emblem_alt", widget: "string" }
+          - { label: "Menu button label (screen readers only)", name: "nav_toggle_label", widget: "string" }
+          - { label: "Menu button text", name: "nav_toggle_text", widget: "string" }
+          - { label: "Menu group label (screen readers only)", name: "nav_aria_label", widget: "string" }
+
+      # ================= FOOTER =================
+      - label: "Footer"
+        name: "footer"
+        widget: "object"
+        fields:
+          - { label: "Site column heading", name: "site_heading", widget: "string" }
+          - { label: "Get in touch column heading", name: "contact_heading", widget: "string" }
+          - { label: "Word before the area name", name: "serving_prefix", widget: "string" }
+          - { label: "Suffix after the area name (first column)", name: "area_note_suffix", widget: "string" }
+          - { label: "Word before the phone number", name: "phone_prefix", widget: "string" }
+          - { label: "Word before the email address", name: "email_prefix", widget: "string" }
+          - { label: "Copyright year written into the page", name: "copyright_year", widget: "string" }
+          - { label: "Copyright wording after the business name", name: "copyright_suffix", widget: "string" }
+
+      # ================= BUTTON LABELS =================
+      - label: "Repeated button labels"
+        name: "cta"
+        widget: "object"
+        fields:
+          - { label: "Book a Free Session button", name: "book_free_session", widget: "string" }
+          - { label: "Our Services button", name: "our_services", widget: "string" }
+
+      # ================= POLICIES (labels + shared notice) =================
+      - label: "Policy labels (footer links, page names, DRAFT notice)"
+        name: "policies"
+        widget: "object"
+        fields:
+          - { label: "Privacy page label", name: "privacy", widget: "string" }
+          - { label: "Safeguarding page label", name: "safeguarding", widget: "string" }
+          - { label: "Cancellations page label", name: "cancellations", widget: "string" }
+          - { label: "Payment page label", name: "payment", widget: "string" }
+          - { label: "DRAFT badge text", name: "draft_tag", widget: "string" }
+          - { label: "Draft notice (shared by all four policy pages)", name: "draft_notice", widget: "textarea" }
+
+      # ==========================================================
+      # PAGE-BY-PAGE TEXT
+      # The words on each page that are not already covered above.
+      # ==========================================================
+      - label: "Page text (each page)"
+        name: "pages"
+        widget: "object"
+        fields:
+          - label: "Home page (index.html)"
+            name: "index"
+            widget: "object"
+            fields:
+              - { label: "Browser tab title", name: "title", widget: "string" }
+              - { label: "Search-engine description", name: "description", widget: "string" }
+              - { label: "Why The Reading Bridge heading", name: "why_heading", widget: "string" }
+              - { label: "Lead line under it", name: "why_lead", widget: "string" }
+              - { label: "How We Help heading", name: "how_heading", widget: "string" }
+              - { label: "Lead line under it", name: "how_lead", widget: "string" }
+              - { label: "View all services button", name: "view_all_services", widget: "string" }
+              - { label: "Meet Your Tutor heading", name: "tutor_heading", widget: "string" }
+              - { label: "Lead line under it", name: "tutor_lead", widget: "string" }
+              - { label: "Learn more about Nicola button", name: "tutor_button", widget: "string" }
+              - { label: "Closing call-to-action heading", name: "cta_heading", widget: "string" }
+              - { label: "Closing call-to-action line", name: "cta_lead", widget: "string" }
+          - label: "Services page (services.html)"
+            name: "services"
+            widget: "object"
+            fields:
+              - { label: "Browser tab title", name: "title", widget: "string" }
+              - { label: "Search-engine description", name: "description", widget: "string" }
+              - { label: "Small label above the heading", name: "eyebrow", widget: "string" }
+              - { label: "Page heading", name: "heading", widget: "string" }
+              - { label: "Lead line under the heading", name: "lead", widget: "string" }
+              - { label: "Your Path With Us heading", name: "path_heading", widget: "string" }
+              - { label: "Lead line under it", name: "path_lead", widget: "string" }
+              - { label: "Paragraph under it", name: "path_text", widget: "textarea" }
+              - { label: "See the Assessment Day button", name: "path_button", widget: "string" }
+          - label: "Owner page (owner.html)"
+            name: "owner"
+            widget: "object"
+            fields:
+              - { label: "Browser tab title", name: "title", widget: "string" }
+              - { label: "Search-engine description", name: "description", widget: "string" }
+              - { label: "Small label above the heading", name: "eyebrow", widget: "string" }
+              - { label: "Page heading", name: "heading", widget: "string" }
+          - label: "Assessment page (assessment.html)"
+            name: "assessment"
+            widget: "object"
+            fields:
+              - { label: "Browser tab title", name: "title", widget: "string" }
+              - { label: "Search-engine description", name: "description", widget: "string" }
+              - { label: "Small label above the heading", name: "eyebrow", widget: "string" }
+              - { label: "Reassurance box text", name: "reassurance_note", widget: "textarea" }
+              - { label: "Child-led card heading", name: "childled_heading", widget: "string" }
+              - { label: "Recognised Assessment Tools Used heading", name: "tools_heading", widget: "string" }
+              - { label: "Preparing Your Child heading", name: "prep_heading", widget: "string" }
+          - label: "Pricing page (pricing.html)"
+            name: "pricing"
+            widget: "object"
+            fields:
+              - { label: "Browser tab title", name: "title", widget: "string" }
+              - { label: "Search-engine description", name: "description", widget: "string" }
+              - { label: "Small label above the heading", name: "eyebrow", widget: "string" }
+          - label: "FAQ page (faq.html)"
+            name: "faq"
+            widget: "object"
+            fields:
+              - { label: "Browser tab title", name: "title", widget: "string" }
+              - { label: "Search-engine description", name: "description", widget: "string" }
+              - { label: "Small label above the heading", name: "eyebrow", widget: "string" }
+              - { label: "Page heading", name: "heading", widget: "string" }
+              - { label: "Lead line under the heading", name: "lead", widget: "string" }
+          - label: "Area page (area.html)"
+            name: "area"
+            widget: "object"
+            fields:
+              - { label: "Browser tab title", name: "title", widget: "string" }
+              - { label: "Search-engine description", name: "description", widget: "string" }
+          - label: "Booking page (book.html)"
+            name: "book"
+            widget: "object"
+            fields:
+              - { label: "Browser tab title", name: "title", widget: "string" }
+              - { label: "Search-engine description", name: "description", widget: "string" }
+              - { label: "Label: parent's name", name: "parent_name", widget: "string" }
+              - { label: "Label: child's name", name: "child_name", widget: "string" }
+              - { label: "Label: age / key stage", name: "age", widget: "string" }
+              - { label: "Label: email", name: "email", widget: "string" }
+              - { label: "Label: phone", name: "phone_label", widget: "string" }
+              - { label: "Hint after the phone label", name: "phone_hint", widget: "string" }
+              - { label: "Grey placeholder in the long box", name: "need_placeholder", widget: "string" }
+              - { label: "Grey placeholder: preferred day", name: "day_placeholder", widget: "string" }
+              - { label: "Grey placeholder: preferred time", name: "time_placeholder", widget: "string" }
+              - { label: "First, empty option in the dropdown", name: "select_prompt", widget: "string" }
+              - { label: "Dropdown option", name: "option_face_to_face", widget: "string" }
+              - { label: "Dropdown option", name: "option_online", widget: "string" }
+              - { label: "Dropdown option", name: "option_not_sure", widget: "string" }
+              - { label: "Consent checkbox wording", name: "consent_text", widget: "string" }
+              - { label: "Consent hint", name: "consent_hint", widget: "string" }
+              - { label: "Submit button text", name: "submit", widget: "string" }
+              - { label: "Booking-widget slot note", name: "embed_note", widget: "textarea" }
+          - label: "Contact page (contact.html)"
+            name: "contact"
+            widget: "object"
+            fields:
+              - { label: "Browser tab title", name: "title", widget: "string" }
+              - { label: "Search-engine description", name: "description", widget: "string" }
+              - { label: "Phone link target (tel: then the digits, no spaces)", name: "phone_href", widget: "string" }
+              - { label: "Small line under the email address", name: "meta_line", widget: "string" }
+              - { label: "Paragraph on the right", name: "body_text", widget: "textarea" }
+
+      # ============ STATUS FLAGS (leave alone unless adding a feature) ====
+      - label: "Analytics (leave OFF)"
+        name: "analytics"
+        widget: "object"
+        fields:
+          - { label: "Status", name: "status", widget: "string" }
+          - { label: "Note", name: "note", widget: "textarea" }
+      - label: "Payment integration (leave NONE)"
+        name: "payment_integration"
+        widget: "object"
+        fields:
+          - { label: "Status", name: "status", widget: "string" }
+          - { label: "Note", name: "note", widget: "textarea" }
+      - label: "Booking embed (leave PLACEHOLDER)"
+        name: "booking_embed"
+        widget: "object"
+        fields:
+          - { label: "Status", name: "status", widget: "string" }
+          - { label: "Note", name: "note", widget: "textarea" }
+
+  # =========================================================================
+  # The four policy pages, from content/policies.json.
+  # The DRAFT notice is shared and lives under "Website content" > Policies.
+  # =========================================================================
+  - name: "policies"
+    label: "Policy pages"
+    description: "The privacy, safeguarding, cancellations and payment pages."
+    files:
+      - name: "policies"
+        label: "Policy pages"
+        file: "content/policies.json"
+        format: "json"
+        editor:
+          preview: false
+        fields:
+          - { label: "Self-edit guide (this note sits at the top of policies.json)", name: "_readme", widget: "string" }
+          - label: "Privacy and GDPR page"
+            name: "privacy"
+            widget: "object"
+            fields:
+              - { label: "Browser tab title", name: "page_title", widget: "string" }
+              - { label: "Search-engine description", name: "meta_description", widget: "string" }
+              - { label: "Internal section id (do not change)", name: "section_id", widget: "string" }
+              - { label: "DRAFT badge text", name: "draft_tag", widget: "string" }
+              - { label: "Page heading", name: "heading", widget: "string" }
+              - label: "Sections"
+                name: "sections"
+                widget: "list"
+                summary: "{{fields.heading}}"
+                fields:
+                  - { label: "Section heading (leave blank for a section with no heading)", name: "heading", widget: "string", required: false }
+                  - label: "Blocks (in the order they appear)"
+                    name: "blocks"
+                    widget: "list"
+                    summary: "{{fields.type}}"
+                    fields:
+                      - label: "Block type"
+                        name: "type"
+                        widget: "select"
+                        default: "p"
+                        options:
+                          - { label: "Paragraph", value: "p" }
+                          - { label: "Bullet list", value: "ul" }
+                      - { label: "Paragraph text (used when the type is p)", name: "text", widget: "text", required: false }
+                      - label: "Bullet points (used when the type is ul)"
+                        name: "items"
+                        widget: "list"
+                        required: false
+          - label: "Safeguarding page"
+            name: "safeguarding"
+            widget: "object"
+            fields:
+              - { label: "Browser tab title", name: "page_title", widget: "string" }
+              - { label: "Search-engine description", name: "meta_description", widget: "string" }
+              - { label: "Internal section id (do not change)", name: "section_id", widget: "string" }
+              - { label: "DRAFT badge text", name: "draft_tag", widget: "string" }
+              - { label: "Page heading", name: "heading", widget: "string" }
+              - label: "Sections"
+                name: "sections"
+                widget: "list"
+                summary: "{{fields.heading}}"
+                fields:
+                  - { label: "Section heading (leave blank for a section with no heading)", name: "heading", widget: "string", required: false }
+                  - label: "Blocks (in the order they appear)"
+                    name: "blocks"
+                    widget: "list"
+                    summary: "{{fields.type}}"
+                    fields:
+                      - label: "Block type"
+                        name: "type"
+                        widget: "select"
+                        default: "p"
+                        options:
+                          - { label: "Paragraph", value: "p" }
+                          - { label: "Bullet list", value: "ul" }
+                      - { label: "Paragraph text (used when the type is p)", name: "text", widget: "text", required: false }
+                      - label: "Bullet points (used when the type is ul)"
+                        name: "items"
+                        widget: "list"
+                        required: false
+          - label: "Cancellations and Rescheduling page"
+            name: "cancellations"
+            widget: "object"
+            fields:
+              - { label: "Browser tab title", name: "page_title", widget: "string" }
+              - { label: "Search-engine description", name: "meta_description", widget: "string" }
+              - { label: "Internal section id (do not change)", name: "section_id", widget: "string" }
+              - { label: "DRAFT badge text", name: "draft_tag", widget: "string" }
+              - { label: "Page heading", name: "heading", widget: "string" }
+              - label: "Sections"
+                name: "sections"
+                widget: "list"
+                summary: "{{fields.heading}}"
+                fields:
+                  - { label: "Section heading (leave blank for a section with no heading)", name: "heading", widget: "string", required: false }
+                  - label: "Blocks (in the order they appear)"
+                    name: "blocks"
+                    widget: "list"
+                    summary: "{{fields.type}}"
+                    fields:
+                      - label: "Block type"
+                        name: "type"
+                        widget: "select"
+                        default: "p"
+                        options:
+                          - { label: "Paragraph", value: "p" }
+                          - { label: "Bullet list", value: "ul" }
+                      - { label: "Paragraph text (used when the type is p)", name: "text", widget: "text", required: false }
+                      - label: "Bullet points (used when the type is ul)"
+                        name: "items"
+                        widget: "list"
+                        required: false
+          - label: "Payment Terms page"
+            name: "payment"
+            widget: "object"
+            fields:
+              - { label: "Browser tab title", name: "page_title", widget: "string" }
+              - { label: "Search-engine description", name: "meta_description", widget: "string" }
+              - { label: "Internal section id (do not change)", name: "section_id", widget: "string" }
+              - { label: "DRAFT badge text", name: "draft_tag", widget: "string" }
+              - { label: "Page heading", name: "heading", widget: "string" }
+              - label: "Sections"
+                name: "sections"
+                widget: "list"
+                summary: "{{fields.heading}}"
+                fields:
+                  - { label: "Section heading (leave blank for a section with no heading)", name: "heading", widget: "string", required: false }
+                  - label: "Blocks (in the order they appear)"
+                    name: "blocks"
+                    widget: "list"
+                    summary: "{{fields.type}}"
+                    fields:
+                      - label: "Block type"
+                        name: "type"
+                        widget: "select"
+                        default: "p"
+                        options:
+                          - { label: "Paragraph", value: "p" }
+                          - { label: "Bullet list", value: "ul" }
+                      - { label: "Paragraph text (used when the type is p)", name: "text", widget: "text", required: false }
+                      - label: "Bullet points (used when the type is ul)"
+                        name: "items"
+                        widget: "list"
+                        required: false

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{ page.title }}</title>
+<meta name="description" content="{{ page.description }}">
+<meta name="theme-color" content="{{ site.chrome.theme_color }}">
+{% if page.depth == 'root' %}<!-- Fonts are self-hosted (no external requests) - see styles.css -->
+{% endif %}<link rel="stylesheet" href="{{ page.prefix }}styles.css">
+<link rel="icon" href="{{ page.prefix }}assets/logo-emblem.png" type="image/png">
+</head>
+<body>
+<a class="skip-link" href="#main">{{ site.chrome.skip_link }}</a>
+
+{{ header }}
+{{ main }}
+{{ footer }}
+<script src="{{ page.prefix }}main.js" defer></script>
+</body>
+</html>

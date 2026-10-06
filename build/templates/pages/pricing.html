@@ -1,0 +1,18 @@
+<main id="main">
+
+<section>
+  <div class="wrap">
+    <span class="eyebrow">{{ site.pages.pricing.eyebrow }}</span>
+    <h2>{{ site.pricing.heading }}</h2>
+    <p class="lead">{{ site.pricing.intro }}</p>
+    <div class="confirm">{{ site.pricing.note }}</div>
+    <div class="grid grid-3">{% for item in site.pricing.cards %}<div class="card">
+  <h3>{{ item.name }}</h3>
+  <p class="micro">{{ item.price }}</p>
+  <p class="format">{{ item.per }}</p>
+  <p class="micro">{{ item.note }}</p>
+</div>{% endfor %}</div>
+    <p class="center mt-2"><a class="btn btn-navy" href="book.html">{{ site.pricing.call_to_action }}</a></p>
+  </div>
+</section>
+</main>

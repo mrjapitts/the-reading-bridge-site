@@ -1,0 +1,61 @@
+<main id="main">
+
+<section class="hero">
+  <div class="wrap">
+    <span class="eyebrow">{{ site.hero.eyebrow }}</span>
+    <h1>{{ site.hero.headline }}</h1>
+    <p class="lead">{{ site.hero.subheadline }}</p>
+    <p class="hero supporting">{{ site.hero.supporting_text }}</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="{{ site.hero.primary_button.href }}">{{ site.hero.primary_button.label }}</a>
+      <a class="btn btn-secondary" href="{{ site.hero.secondary_button.href }}">{{ site.hero.secondary_button.label }}</a>
+    </div>
+  </div>
+</section>
+
+<section class="cred">
+  <div class="wrap">
+    <div class="section-head"><h2>{{ site.pages.index.why_heading }}</h2><p class="lead">{{ site.pages.index.why_lead }}</p></div>
+    <div class="grid grid-4">{% for item in site.credibility_bullets %}<div class="card"><div class="title">{{ item.title }}</div><p>{{ item.text }}</p></div>{% endfor %}</div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head"><h2>{{ site.pages.index.how_heading }}</h2><p class="lead">{{ site.pages.index.how_lead }}</p></div>
+    <div class="grid grid-3">{% for item in page_services %}<div class="card">
+  <h3>{{ item.title | html }}</h3>
+  <p>{{ item.summary }}</p>
+  <p class="micro">{{ item.details }}</p>
+  <span class="format">{% if item.ages %}{{ item.ages }} · {% endif %}{{ item.format }}</span>
+</div>{% endfor %}</div>
+    <p class="center mt-2"><a class="btn btn-navy" href="services.html">{{ site.pages.index.view_all_services }}</a></p>
+  </div>
+</section>
+
+<section class="cred">
+  <div class="wrap">
+    <div class="section-head"><h2>{{ site.pages.index.tutor_heading }}</h2><p class="lead">{{ site.pages.index.tutor_lead }}</p></div>
+    <div class="grid grid-2">
+      <figure><img class="emblem-img emblem-img-home" src="assets/logo-emblem.png" alt="{{ site.chrome.emblem_alt }}"></figure>
+      <div>
+        <p>{{ site.owner.bio_intro }}</p>
+        <p>{{ site.owner.bio_extra }}</p>
+        <p class="micro">{{ site.owner.signature }}</p>
+        <p class="mt-1"><a class="btn btn-primary" href="owner.html">{{ site.pages.index.tutor_button }}</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap center">
+    <h2>{{ site.pages.index.cta_heading }}</h2>
+    <p class="lead">{{ site.pages.index.cta_lead }}</p>
+    <div class="hero-actions center-actions">
+      <a class="btn btn-primary" href="book.html">{{ site.cta.book_free_session }}</a>
+      <a class="btn btn-navy" href="services.html">{{ site.cta.our_services }}</a>
+    </div>
+  </div>
+</section>
+</main>

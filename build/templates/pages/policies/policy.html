@@ -1,0 +1,16 @@
+<main id="main">
+<section id="{{ policy.section_id }}">
+  <span class="draft-tag">{{ policy.draft_tag }}</span>
+  <h2>{{ policy.heading }}</h2>
+  <div class="confirm">{{ site.policies.draft_notice }}</div>
+
+{% for sec in policy.sections %}<div class="policy-section">
+{% if sec.heading %}  <h3>{{ sec.heading }}</h3>
+{% endif %}{% for blk in sec.blocks %}{% if blk.type == 'p' %}  <p>{{ blk.text }}</p>
+{% elif blk.type == 'ul' %}  <ul>
+{% for li in blk.items %}    <li>{{ li }}</li>
+{% endfor %}  </ul>
+{% endif %}{% endfor %}</div>
+{% endfor %}
+</section>
+</main>

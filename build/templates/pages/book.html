@@ -1,0 +1,13 @@
+<main id="main">
+
+<section>
+  <div class="wrap">
+    <div class="section-head"><h2>{{ site.booking.heading }}</h2><p class="lead">{{ site.booking.subheading }}</p></div>
+    <div class="confirm">{{ site.booking.note }}</div>
+    <form action="#" method="post">
+      <div class="honeypot" aria-hidden="true" tabindex="-1"><input name="website" type="text" autocomplete="off" tabindex="-1"></div><div class="field"><label for="parent-name">{{ site.pages.book.parent_name }}</label><input id="parent-name" name="parent-name" type="text" required></div><div class="field"><label for="child-name">{{ site.pages.book.child_name }}</label><input id="child-name" name="child-name" type="text"></div><div class="field"><label for="age">{{ site.pages.book.age }}</label><input id="age" name="age" type="text"></div><div class="field"><label for="email">{{ site.pages.book.email }}</label><input id="email" name="email" type="email" required></div><div class="field"><label for="phone">{{ site.pages.book.phone_label }} <span class="hint">{{ site.pages.book.phone_hint }}</span></label><input id="phone" name="phone" type="tel"></div><div class="field"><label for="need">{{ site.booking.subject }}</label><textarea id="need" name="need" placeholder="{{ site.pages.book.need_placeholder }}"></textarea></div><div class="field"><label for="day">{{ site.booking.preferred_day }}</label><input id="day" name="day" type="text" placeholder="{{ site.pages.book.day_placeholder }}"></div><div class="field"><label for="time">{{ site.booking.preferred_time }}</label><input id="time" name="time" type="text" placeholder="{{ site.pages.book.time_placeholder }}"></div><div class="field"><label for="delivery">{{ site.booking.delivery }}</label><select id="delivery" name="delivery"><option value="">{{ site.pages.book.select_prompt }}</option><option>{{ site.pages.book.option_face_to_face }}</option><option>{{ site.pages.book.option_online }}</option><option>{{ site.pages.book.option_not_sure }}</option></select></div><div class="checkbox-row"><input id="consent" name="consent" type="checkbox" required><label for="consent">{{ site.pages.book.consent_text }} <span class="hint">{{ site.pages.book.consent_hint }}</span></label></div><button class="btn btn-primary" type="submit">{{ site.pages.book.submit }}</button><p class="form-note">{{ site.booking.note }}</p>
+    </form>
+    <div id="booking-embed" class="placeholder-note">{{ site.pages.book.embed_note }}</div>
+  </div>
+</section>
+</main>

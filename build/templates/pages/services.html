@@ -1,0 +1,21 @@
+<main id="main">
+
+<section>
+  <div class="wrap">
+    <div class="section-head"><span class="eyebrow">{{ site.pages.services.eyebrow }}</span><h2>{{ site.pages.services.heading }}</h2><p class="lead">{{ site.pages.services.lead }}</p></div>
+    <div class="grid grid-3">{% for item in site.services %}<div class="card">
+  <h3>{{ item.title | html }}</h3>
+  <p>{{ item.summary }}</p>
+  <p class="micro">{{ item.details }}</p>
+  <span class="format">{% if item.ages %}{{ item.ages }} · {% endif %}{{ item.format }}</span>
+</div>{% endfor %}</div>
+  </div>
+</section>
+<section class="cred">
+  <div class="wrap">
+    <div class="section-head"><h2>{{ site.pages.services.path_heading }}</h2><p class="lead">{{ site.pages.services.path_lead }}</p></div>
+    <p class="lead">{{ site.pages.services.path_text }}</p>
+    <p class="mt-1"><a class="btn btn-primary" href="assessment.html">{{ site.pages.services.path_button }}</a></p>
+  </div>
+</section>
+</main>

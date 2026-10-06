@@ -1,0 +1,416 @@
+{
+  "_readme": "OWNER SELF-EDIT GUIDE — see README.md for the full plain-English walkthrough. This ONE file holds every value you want to change on the website. Edit the text between the quotes, keep the exact spelling of the word and the curly braces and commas, then save. When the site is on Netlify it refreshes automatically; locally just refresh your browser. NEVER put secret data (passwords, API keys) here. TO CONFIRM items are marked clearly below — replace them with real values when you are ready.",
+  "business": {
+    "name": "The Reading Bridge",
+    "descriptor": "Specialist SEND and Homeschool Tutoring",
+    "strapline": "Bridging the Gap Between Home and Specialist Literacy Support",
+    "closing_tagline": "CONFIDENCE. PROGRESS. POTENTIAL. — Let's build a stronger reading future together.",
+    "email": "info@thereadingbridgesw.co.uk",
+    "_email": "⚠️ TO CONFIRM — the original flyer still showed a [Your Email Address] placeholder. Confirm this address, then replace the value above.",
+    "phone": "07368 512670",
+    "area_served": "Somerset and Devon",
+    "areas_served_list": [
+      "Somerset",
+      "Devon"
+    ],
+    "domain": "thereadingbridgesw.co.uk",
+    "key_stages_served": [
+      "KS2",
+      "KS3",
+      "KS4"
+    ],
+    "_key_stages": "⚠️ TO CONFIRM — artwork is inconsistent: the flyer says KS2 & KS3, the services graphic says KS2, KS3 and KS4. Choose the correct list above.",
+    "age_range_phonics": "9–14"
+  },
+  "hero": {
+    "eyebrow": "Bridging the Gap Between Home and Specialist Literacy Support",
+    "headline": "Is Your Child Struggling with Reading or Phonics?",
+    "subheadline": "Unlock their reading potential with expert, evidence-based tuition for SEND and home-educated children.",
+    "supporting_text": "No more guesswork. Just targeted progress. Many bright children struggle with reading because of hidden gaps in fluency, decoding, or comprehension. Tuition uses a premium, data-driven approach to find exactly where the breakdown is happening — and fixes it.",
+    "primary_button": {
+      "label": "Book a Free Session",
+      "href": "book.html"
+    },
+    "secondary_button": {
+      "label": "Our Services",
+      "href": "services.html"
+    }
+  },
+  "credibility_bullets": [
+    {
+      "title": "Fully Qualified Teacher (QTS)",
+      "text": "Specialist experience in both Primary and Secondary Education."
+    },
+    {
+      "title": "Standardised Diagnostics + Trusted Intervention",
+      "text": "Precise assessment followed by carefully planned support."
+    },
+    {
+      "title": "Specialist Literacy Support",
+      "text": "For KS2, KS3 and KS4 learners."
+    },
+    {
+      "title": "Designed for Home-Educated and SEND Learners",
+      "text": "Built with an understanding of what these families need."
+    }
+  ],
+  "owner": {
+    "name": "Nicola Mackenzie",
+    "qualifications": "QTS — Fully Qualified Teacher",
+    "bio_intro": "Nicola Mackenzie is a former Primary School Teacher, KS3 English Teacher, Secondary ELP (Enhanced Learning Provision) Specialist, and certified phonics and literacy lead.",
+    "bio_extra": "Grounded in lived experience as a proud SEND mum, Nicola understands both the classroom and the home. She builds a comprehensive 360° diagnostic literacy profile, then designs tailored support using specialist, age-appropriate programs — including Read Write Inc. Fresh Start phonics, That Reading Thing, Game Changers and more.",
+    "signature": "Nicola Mackenzie, QTS"
+  },
+  "services": [
+    {
+      "title": "1:1 Tutoring",
+      "summary": "Personalised, expert tuition tailored to your child's unique needs and goals.",
+      "details": "One-to-one sessions designed around your child, delivered face-to-face.",
+      "format": "Face-to-face"
+    },
+    {
+      "title": "Bridge Learning Pods",
+      "summary": "Small-group reading sessions that build confidence, connection and progress.",
+      "details": "Beneficial small-group sessions where children read, grow and support one another.",
+      "format": "Small group"
+    },
+    {
+      "title": "1-to-1 Standardised Assessment",
+      "summary": "A precise diagnostic profile using recognised instruments.",
+      "details": "Uses a variety of assessments including YARC (York Assessment of Reading for Comprehension) to measure reading accuracy, speed and comprehension against national benchmarks.",
+      "format": "1-to-1"
+    },
+    {
+      "title": "Age-Appropriate Catch-Up Phonics",
+      "summary": "Rebuilding decoding for older pupils without 'babyish' materials.",
+      "details": "Via Read Write Inc. Fresh Start, for pupils ages 9–14.",
+      "format": "1-to-1",
+      "ages": "9–14"
+    },
+    {
+      "title": "Advanced Comprehension & Fluency",
+      "summary": "Targeted strategies for reading speed, vocabulary and deep text understanding.",
+      "details": "Helps children move beyond decoding into genuine comprehension and fluent reading.",
+      "format": "1-to-1"
+    },
+    {
+      "title": "Clear Progress Reporting",
+      "summary": "Detailed diagnostic feedback profiles to document and support a home-education or SEND portfolio.",
+      "details": "A Diagnostic Baseline Profile compiled within ~48 hours, followed by a short follow-up call.",
+      "format": "Part of assessment"
+    }
+  ],
+  "assessment": {
+    "title": "The Assessment Day",
+    "reassurance": "This Is Not a 'Pass or Fail' Test. Please reassure your child that they cannot 'fail' this session. This assessment is simply a puzzle that helps me map out how their brain processes language.",
+    "duration": "45 to 60 minutes",
+    "duration_detail": "Because it is conducted 1-to-1 in a quiet, relaxed space, it feels much more like an informal quiz or a game than a rigid school exam.",
+    "tools": [
+      {
+        "name": "The WRAT5",
+        "what": "Word lists, quick spelling games and short tasks — no long, intimidating stories."
+      },
+      {
+        "name": "The Access Reading Test",
+        "what": "Short passages read silently, answered as multi-choice puzzles."
+      },
+      {
+        "name": "The YARC",
+        "what": "Your child reads a short, specially levelled story aloud."
+      }
+    ],
+    "prep": [
+      {
+        "title": "Keep It Low-Key",
+        "text": "A calm, relaxed morning beats a big production."
+      },
+      {
+        "title": "Rest and Fuel",
+        "text": "A good night's sleep and a protein-rich snack make a real difference."
+      },
+      {
+        "title": "What to Bring",
+        "text": "Prescription reading glasses, a coloured overlay or a tracking ruler if your child uses these."
+      }
+    ],
+    "control_note": "If your child needs a brain break, a stretch, or a glass of water, we pause immediately. They are entirely in control.",
+    "next_steps": "The diagnostics are scored and a Diagnostic Baseline Profile is compiled within ~48 hours, followed by a short follow-up call to walk you through what it all means.",
+    "tool_note": "The three named instruments (WRAT5, Access Reading Test, YARC) are examples of recognised tools that may be used. ⚠️ TO CONFIRM — confirm these are the instruments currently used before publishing.",
+    "_tool_note": "⚠️ The line above is a TO CONFIRM placeholder. Confirm the exact assessment tools, then replace the tool_note value. The three tools array above is editable too."
+  },
+  "pricing": {
+    "status": "TO CONFIRM",
+    "heading": "Investment in Your Child's Reading",
+    "intro": "Each child is different, so fees depend on the type of session and how often you need support. Please get in touch for a clear, honest quote tailored to your child.",
+    "note": "⚠️ PRICES NOT YET SUPPLIED. The cards below are clearly-marked editable placeholders. Replace them with real prices in this file, or leave as-is until pricing is confirmed. Never present a placeholder as a real price.",
+    "cards": [
+      {
+        "name": "1:1 Tutoring",
+        "price": "TO CONFIRM",
+        "per": "per session",
+        "note": "Editable placeholder — replace with a real price."
+      },
+      {
+        "name": "Bridge Learning Pods",
+        "price": "TO CONFIRM",
+        "per": "per session",
+        "note": "Editable placeholder — replace with a real price."
+      },
+      {
+        "name": "1-to-1 Standardised Assessment",
+        "price": "TO CONFIRM",
+        "per": "per assessment",
+        "note": "Editable placeholder — replace with a real price."
+      }
+    ],
+    "call_to_action": "Not sure which is right? Book a free chat and we'll advise."
+  },
+  "booking": {
+    "heading": "Book a Session",
+    "subheading": "Tell us a little about your child and we'll get back to you to confirm your slot.",
+    "note": "This is a booking-REQUEST form only. There is no payment anywhere on this site yet.",
+    "preferred_day": "Preferred day",
+    "preferred_time": "Preferred time",
+    "subject": "Your child's main need",
+    "key_stage": "Key stage",
+    "delivery": "Online or face-to-face"
+  },
+  "faq": [
+    {
+      "q": "What ages and key stages do you work with?",
+      "a": "⚠️ TO CONFIRM — artwork is inconsistent (KS2–KS3 vs KS2–KS4). Working with KS2, KS3 and KS4 learners, including the 9–14 age range for the phonics catch-up track."
+    },
+    {
+      "q": "Do you have SEND and dyslexia experience?",
+      "a": "Yes. Nicola is a specialist in Enhanced Learning Provision and designs all support for neurodiverse learners, dyslexic profiles and home-educated children."
+    },
+    {
+      "q": "Do you work online or face-to-face?",
+      "a": "1:1 tutoring is delivered face-to-face. Bridge Learning Pods are small-group sessions. Tell us your preference when you book and we'll advise what suits your child."
+    },
+    {
+      "q": "How long is a session?",
+      "a": "Typically 45 to 60 minutes, conducted 1-to-1 in a quiet, relaxed space."
+    },
+    {
+      "q": "What happens at the assessment?",
+      "a": "It is not a pass or fail test — your child cannot fail. It feels more like an informal quiz or a game, and your child is entirely in control, including taking breaks. A Diagnostic Baseline Profile is then compiled within ~48 hours, followed by a short follow-up call."
+    },
+    {
+      "q": "How quickly will I get results?",
+      "a": "The Diagnostic Baseline Profile is usually compiled within about 48 hours, followed by a short follow-up call to walk you through it."
+    },
+    {
+      "q": "Do you set homework?",
+      "a": "⚠️ TO CONFIRM — confirm whether any between-session practice is set, and if so what. Answer: to be confirmed."
+    },
+    {
+      "q": "What if my child is anxious?",
+      "a": "This is very common and completely understood. Sessions are kept calm and child-led, with breaks whenever needed. Your child is entirely in control."
+    },
+    {
+      "q": "Which area do you cover?",
+      "a": "Somerset and Devon."
+    },
+    {
+      "q": "How do I pay?",
+      "a": "Payment details are agreed directly. ⚠️ TO CONFIRM — confirm the payment method (e.g. bank transfer, per session or termly), and update the Payment Terms page accordingly."
+    },
+    {
+      "q": "What is your cancellation policy?",
+      "a": "⚠️ TO CONFIRM — confirm the cancellation and rescheduling policy, then update the Cancellations & Rescheduling page accordingly."
+    },
+    {
+      "q": "Are you DBS checked?",
+      "a": "⚠️ TO CONFIRM — this is unknown and must not be asserted. Once Nicola confirms her DBS position, update this answer and the Safeguarding page. Do not state 'yes' or 'no' until confirmed."
+    }
+  ],
+  "contact": {
+    "heading": "Get in Touch",
+    "subheading": "We'd love to hear from you. Send an enquiry and we'll reply as soon as we can.",
+    "phone_label": "Phone",
+    "email_label": "Email"
+  },
+  "area_section": {
+    "heading": "Serving Families Across Somerset and Devon",
+    "text": "Support for home-educated and SEND learners across the region.",
+    "cards": [
+      {
+        "name": "Somerset",
+        "text": "Home and face-to-face tutoring available across Somerset."
+      },
+      {
+        "name": "Devon",
+        "text": "Home and face-to-face tutoring available across Devon."
+      }
+    ]
+  },
+  "policies": {
+    "privacy": "Privacy & GDPR",
+    "safeguarding": "Safeguarding",
+    "cancellations": "Cancellations & Rescheduling",
+    "payment": "Payment Terms",
+    "draft_notice": "DRAFT — these policy pages are starter drafts for review. They are not legal advice and must be reviewed by Nicola before publication.",
+    "draft_tag": "DRAFT"
+  },
+  "analytics": {
+    "status": "OFF (placeholder)",
+    "note": "⚠️ TO CONFIRM / NOT YET ADDED — privacy-first, cookie-less Cloudflare Web Analytics is recommended given children's data. A commented slot exists in main.js. No analytics run yet, so no cookies are set by default."
+  },
+  "payment_integration": {
+    "status": "NONE (placeholder)",
+    "note": "⚠️ NOT YET ADDED — no Stripe or PayPal account exists. A commented placeholder for Stripe Payment Links / PayPal buttons exists in pricing.html. Do not enable until an account is created."
+  },
+  "booking_embed": {
+    "status": "PLACEHOLDER",
+    "note": "⚠️ NOT YET ADDED — a <div id=\"booking-embed\"> slot exists in book.html where a free Calendly widget can be dropped in later, no rebuild required."
+  },
+  "nav": [
+    {
+      "label": "Home",
+      "href": "index.html"
+    },
+    {
+      "label": "Services",
+      "href": "services.html"
+    },
+    {
+      "label": "Owner",
+      "href": "owner.html"
+    },
+    {
+      "label": "Assessment",
+      "href": "assessment.html"
+    },
+    {
+      "label": "Pricing",
+      "href": "pricing.html"
+    },
+    {
+      "label": "FAQ",
+      "href": "faq.html"
+    },
+    {
+      "label": "Area",
+      "href": "area.html"
+    },
+    {
+      "label": "Book",
+      "href": "book.html"
+    },
+    {
+      "label": "Contact",
+      "href": "contact.html"
+    }
+  ],
+  "chrome": {
+    "skip_link": "Skip to main content",
+    "theme_color": "#1B2F5C",
+    "brand_aria": "The Reading Bridge home",
+    "logo_alt": "The Reading Bridge logo",
+    "emblem_alt": "The Reading Bridge emblem",
+    "nav_toggle_label": "Toggle navigation",
+    "nav_toggle_text": "&#9776; Menu",
+    "nav_aria_label": "Primary"
+  },
+  "cta": {
+    "book_free_session": "Book a Free Session",
+    "our_services": "Our Services"
+  },
+  "footer": {
+    "site_heading": "Site",
+    "contact_heading": "Get in touch",
+    "serving_prefix": "Serving ",
+    "area_note_suffix": " tutoring · privacy-first website",
+    "phone_prefix": "Phone: ",
+    "email_prefix": "Email: ",
+    "copyright_year": "2026",
+    "copyright_suffix": ". All rights reserved."
+  },
+  "pages": {
+    "index": {
+      "title": "Bridging the Gap Between Home and Specialist Literacy Support · Specialist SEND and Homeschool Tutoring",
+      "description": "Bridging the Gap Between Home and Specialist Literacy Support",
+      "why_heading": "Why The Reading Bridge",
+      "why_lead": "Evidence-based support built around your child.",
+      "how_heading": "How We Help",
+      "how_lead": "Specialist SEND and homeschool tutoring for every stage.",
+      "view_all_services": "View all services &rarr;",
+      "tutor_heading": "Meet Your Tutor",
+      "tutor_lead": "A specialist with both the qualifications and the lived experience.",
+      "tutor_button": "Learn more about Nicola &rarr;",
+      "cta_heading": "Book a Free Session",
+      "cta_lead": "Every child is bright. Some just need the right bridge."
+    },
+    "services": {
+      "title": "Services Specialist SEND and Homeschool Tutoring",
+      "description": "Specialist tuition &amp; support",
+      "eyebrow": "Our Services",
+      "heading": "Specialist Tuition &amp; Support",
+      "lead": "Each service is tailored to the child. Every child is different.",
+      "path_heading": "Your Path With Us",
+      "path_lead": "Assess · Design · Support · Report",
+      "path_text": "Every journey starts with a clear, one-to-one assessment so we understand exactly where the breakdown is happening. Support is then tailored, and progress is tracked and reported back to you.",
+      "path_button": "See the Assessment Day &rarr;"
+    },
+    "owner": {
+      "title": "The Reading Bridge — Specialist SEND and Homeschool Tutoring",
+      "description": "The Reading Bridge",
+      "eyebrow": "The Owner",
+      "heading": "The Reading Bridge"
+    },
+    "assessment": {
+      "title": "The Assessment Day Specialist SEND and Homeschool Tutoring",
+      "description": "The Assessment Day",
+      "eyebrow": "The Assessment",
+      "reassurance_note": "Your child cannot \"pass\" or \"fail\" this session &mdash; it is simply a puzzle that helps us map how their brain processes language.",
+      "childled_heading": "Child-led",
+      "tools_heading": "Recognised Assessment Tools Used",
+      "prep_heading": "Preparing Your Child"
+    },
+    "pricing": {
+      "title": "Pricing Specialist SEND and Homeschool Tutoring",
+      "description": "Investment in your child",
+      "eyebrow": "Pricing"
+    },
+    "faq": {
+      "title": "Frequently Asked Questions The Reading Bridge",
+      "description": "FAQ",
+      "eyebrow": "FAQ",
+      "heading": "Frequently Asked Questions",
+      "lead": "Quick answers for parents."
+    },
+    "area": {
+      "title": "Serving Somerset and Devon Specialist SEND and Homeschool Tutoring",
+      "description": "Serving Somerset and Devon"
+    },
+    "book": {
+      "title": "Book a Session Specialist SEND and Homeschool Tutoring",
+      "description": "Book a session",
+      "parent_name": "Your name",
+      "child_name": "Child's name",
+      "age": "Age / key stage",
+      "email": "Email",
+      "phone_label": "Phone",
+      "phone_hint": "(optional)",
+      "need_placeholder": "Tell us a little about your child and what you would like help with.",
+      "day_placeholder": "e.g. weekday evenings",
+      "time_placeholder": "e.g. 4pm&#8211;6pm",
+      "select_prompt": "Please choose…",
+      "option_face_to_face": "Face-to-face",
+      "option_online": "Online",
+      "option_not_sure": "Not sure yet",
+      "consent_text": "I agree for The Reading Bridge to contact me about this enquiry.",
+      "consent_hint": "(Required)",
+      "submit": "Request to Book",
+      "embed_note": "📅 Free booking-widget slot. Drop in a Calendly/embed here &mdash; no site rebuild required. See README.md."
+    },
+    "contact": {
+      "title": "Contact The Reading Bridge",
+      "description": "Get in touch",
+      "phone_href": "tel:07368512670",
+      "meta_line": "Somerset and Devon · face-to-face &amp; online",
+      "body_text": "Questions about which service is right for your child? Send us a message and we'll reply as soon as we can."
+    }
+  }
+}

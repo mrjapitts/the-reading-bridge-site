@@ -1,0 +1,64 @@
+# ===========================================================================
+# The Reading Bridge — response headers
+#
+# Format rules enforced by Netlify (docs.netlify.com/manage/routing/headers and
+# the "why are my _headers rules not working as expected" support guide):
+#   * a path line starts at column 0, with NO leading spaces;
+#   * every header line under it is indented by EXACTLY TWO SPACES;
+#   * a path line and its header lines are consecutive — no blank line between.
+# The public rules below previously had their header lines at column 0, which is
+# not the documented syntax, so the indentation is corrected here alongside the
+# new /admin/ rule.
+# ===========================================================================
+
+# --- Public site -----------------------------------------------------------
+# Strict: self-hosted assets only, no inline script or style, no framing, no
+# third-party connections at all.
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=(), interest-cohort=()
+  Content-Security-Policy: default-src 'self'; img-src 'self' data:; font-src 'self'; style-src 'self'; script-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; frame-src 'none'; form-action 'self' mailto:
+
+# --- The content editor at /admin/ ONLY ------------------------------------
+# Decap CMS is a bundled single-page app. It is the one path that cannot live
+# under the public policy above, so it gets its own PATH-SCOPED policy. The
+# public rules are unchanged, and this rule never applies to a public page.
+#
+# Every relaxation below exists for a specific, named reason:
+#   script-src 'self'                 admin/index.html has no inline script:
+#                                     all four scripts are files under /admin/
+#                                     (two vendored, two ours).
+#   script-src 'unsafe-eval'          Decap's bundled AJV schema compiler builds
+#                                     its validators with `new Function(...)`
+#                                     (verified inside the vendored bundle).
+#   script-src 'wasm-unsafe-eval'     Decap ships a WebAssembly WebP encoder
+#                                     (vendor/*.wasm); compiling it needs this
+#                                     token. It does NOT permit string eval.
+#   style-src  'unsafe-inline'        Decap 2.0+ dropped static CSS for
+#                                     CSS-in-JS (vendor/cms.css is an empty
+#                                     placeholder that says so), so it injects
+#                                     <style> elements at runtime.
+#   img-src    data: blob:            inline data-URI art, and blob: previews
+#                                     for locally chosen files.
+#   font-src   data:                  fonts embedded in the injected CSS.
+#   connect-src https://api.netlify.com
+#                                     the Git Gateway / Netlify Identity API.
+#                                     Authentication itself posts to
+#                                     /.netlify/identity on THIS origin, which
+#                                     'self' already covers; the vendored bundle
+#                                     contains no identity.netlify.com reference,
+#                                     so that host is deliberately NOT allowed.
+#   frame-src  'self'                 Decap's editor-preview pane is a
+#                                     same-origin iframe (window.open popups are
+#                                     not governed by frame-src). The preview is
+#                                     switched off in admin/config.yml, so this
+#                                     is headroom rather than a requirement.
+#
+# Ordering: this block is deliberately placed AFTER the /* block, relying on
+# Netlify applying the last matching rule for a given header name. If a deploy
+# shows /admin/ still receiving the public CSP, move this block ABOVE the /*
+# block and redeploy.
+/admin/*
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-eval' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self' https://api.netlify.com; object-src 'none'; base-uri 'self'; frame-src 'self'; form-action 'self'

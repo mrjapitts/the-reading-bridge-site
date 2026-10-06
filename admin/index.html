@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Content editor — The Reading Bridge</title>
+  <!--
+    Decap CMS is served from this folder, never from a CDN: vendor/ holds the
+    complete decap-cms@3.16.3 distribution (the entry bundle, its 94 lazy
+    chunks, its WebAssembly encoder and the empty cms.css placeholder) plus
+    js-yaml@4.1.0. Nothing on this page contacts unpkg.com or any other
+    third-party host.
+
+    vendor/cms.css is deliberately empty: Decap 2.0+ moved from static CSS to
+    CSS-in-JS and injects its own <style> elements at runtime. That is why the
+    /admin/* CSP allows style-src 'unsafe-inline' — the public pages do not.
+
+    There are no inline script elements on this page: each script is a
+    separate file under /admin/, so /admin/* needs no
+    script-src 'unsafe-inline'. Do not inline them again.
+  -->
+  <link rel="stylesheet" href="vendor/cms.css" />
+</head>
+<body>
+  <!-- 1. Tell Decap not to start until we have fed it our config.
+          MUST run before decap-cms.js. -->
+  <script src="admin-init.js"></script>
+
+  <!-- 2. The Decap CMS app (vendored, with its lazy chunks alongside). -->
+  <script src="vendor/decap-cms.js"></script>
+
+  <!-- 3. Small free helper to read the YAML config file. -->
+  <script src="vendor/js-yaml.min.js"></script>
+
+  <!-- 4. Load the config, then start the editor. -->
+  <script src="admin-boot.js"></script>
+</body>
+</html>

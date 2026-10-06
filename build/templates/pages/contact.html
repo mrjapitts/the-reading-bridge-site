@@ -1,0 +1,20 @@
+<main id="main">
+
+<section>
+  <div class="wrap">
+    <div class="section-head"><h2>{{ site.contact.heading }}</h2><p class="lead">{{ site.contact.subheading }}</p></div>
+    <div class="grid grid-2">
+      <div class="contact-info">
+        <p class="confirm">{{ site.booking.note }}</p>
+        <p><strong>{{ site.contact.phone_label }}:</strong> <a href="{{ site.pages.contact.phone_href }}">{{ site.business.phone }}</a></p>
+        <p><strong>{{ site.contact.email_label }}:</strong> <a href="mailto:{{ site.business.email }}">{{ site.business.email }}</a></p>
+        <p class="micro">{{ site.pages.contact.meta_line }}</p>
+      </div>
+      <div>
+        <p>{{ site.pages.contact.body_text }}</p>
+        <p class="mt-1"><a class="btn btn-primary" href="book.html">{{ site.cta.book_free_session }}</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+</main>

@@ -1,0 +1,280 @@
+{
+  "_readme": "OWNER SELF-EDIT GUIDE — the four policy pages. Each policy below has: a page title and search description, the heading shown at the top of the page, and a list of sections. A section has an optional heading and an ordered list of blocks; a block is either a paragraph or a bullet list. Type is the word 'p' for a paragraph and 'ul' for a bullet list. Keep the spelling of the words and the braces/commas exactly as they are, then save. The DRAFT badge and the DRAFT notice are shared by all four pages and live in content/site.json (under 'policies'), so they only need changing once.",
+  "privacy": {
+    "page_title": "Privacy &amp; GDPR &middot; The Reading Bridge",
+    "meta_description": "Privacy &amp; GDPR - Specialist SEND and Homeschool Tutoring",
+    "section_id": "privacy",
+    "draft_tag": "DRAFT",
+    "heading": "Privacy &amp; GDPR",
+    "sections": [
+      {
+        "heading": "",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "The Reading Bridge (\"we\", \"us\", \"our\") is committed to protecting and preserving the privacy of parents, carers and the children we serve. This Privacy Policy explains how personal data is collected, used, stored and shared."
+          }
+        ]
+      },
+      {
+        "heading": "1. Data We Collect",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "We collect only the personal data necessary to provide tuition and to meet our legal safeguarding obligations. This includes:"
+          },
+          {
+            "type": "ul",
+            "items": [
+              "Name(s) and contact details of parent/guardian and child (including email and telephone number).",
+              "Information about the child's learning needs, assessment results and progress, where provided by you or a qualified assessor.",
+              "Correspondence records relating to enquiries, bookings and sessions."
+            ]
+          },
+          {
+            "type": "p",
+            "text": "We do not require, nor do we collect, sensitive special-category data unless you voluntarily provide it and it is relevant to supporting the child."
+          }
+        ]
+      },
+      {
+        "heading": "2. How We Use Your Data",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Personal data is used solely to:"
+          },
+          {
+            "type": "ul",
+            "items": [
+              "Arrange and deliver teaching and learning sessions;",
+              "Communicate about sessions, progress and any necessary adjustments;",
+              "Fulfil our safeguarding and duty-of-care responsibilities;",
+              "Keep records required by law, including any records relevant to working with children and vulnerable adults."
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "3. Legal Basis &amp; Storage",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "We process personal data under the lawful bases of contract (where a service agreement exists), legal obligation (safeguarding) and, where consent is relied upon, freely given, specific and informed consent. Data is stored securely, kept only for as long as necessary, and is not transferred outside the United Kingdom."
+          }
+        ]
+      },
+      {
+        "heading": "4. Data Retention",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Records are retained only for the period required to fulfil the purposes for which they were collected, or as required by law. Where a family's no longer in session, personal data is retained only as long as legally required and then securely destroyed."
+          }
+        ]
+      },
+      {
+        "heading": "5. Your Rights",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Under data protection law you have the right of access to your personal data, the right to rectify inaccurate data, the right to request erasure, the right to restrict processing, and the right to object to processing. You may exercise these rights by contacting us at info@thereadingbridgesw.co.uk."
+          }
+        ]
+      },
+      {
+        "heading": "6. Complaints",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "If you have concerns about how your data has been handled, please contact us in the first instance. You also have the right to lodge a complaint with the Information Commissioner's Office."
+          }
+        ]
+      }
+    ]
+  },
+  "safeguarding": {
+    "page_title": "Safeguarding &middot; The Reading Bridge",
+    "meta_description": "Safeguarding - Specialist SEND and Homeschool Tutoring",
+    "section_id": "safeguarding",
+    "draft_tag": "DRAFT",
+    "heading": "Safeguarding",
+    "sections": [
+      {
+        "heading": "",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "The safety, welfare and wellbeing of every child is our top priority. The Reading Bridge operates a safeguarding policy in line with the guidance issued by the Department for Education, to ensure that whenever we are in contact with children and young people we take reasonable steps to keep them safe."
+          }
+        ]
+      },
+      {
+        "heading": "1. Our Responsibilities",
+        "blocks": [
+          {
+            "type": "ul",
+            "items": [
+              "To safeguard and promote the welfare of the children we work with;",
+              "To ensure all practice and procedures reflect statutory and governmental guidance;",
+              "To make sure that all staff and anyone working on behalf of The Reading Bridge are aware of their responsibilities and follow safe working practices."
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "2. Safer Recruitment &amp; DBS",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "All tutors working with children hold a current and valid Enhanced Disclosure from the Disclosure and Barring Service (DBS). This disclosure is checked and copies are retained on the personnel file in line with statutory requirements."
+          }
+        ]
+      },
+      {
+        "heading": "3. Recognising and Responding to Abuse",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "We will respond to concerns about a child's welfare in line with our safeguarding procedures. If we have any concerns about a child's safety or welfare we will act promptly — this includes speaking with the child's parents/carers where appropriate, and, where necessary, referring to the relevant local authority children's social care services."
+          }
+        ]
+      },
+      {
+        "heading": "4. Confidentiality",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Information about a child or family is treated as confidential. It is only shared with authorised members of staff on a need-to-know basis and will not be passed to third parties without the consent of the parents/carers, except where we are under a legal or professional duty to disclose, or where it is necessary to protect the welfare of a child."
+          }
+        ]
+      },
+      {
+        "heading": "5. Contact",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "For questions about our safeguarding arrangements, or if you have a concern, please contact us at info@thereadingbridgesw.co.uk."
+          }
+        ]
+      }
+    ]
+  },
+  "cancellations": {
+    "page_title": "Cancellations &amp; Rescheduling &middot; The Reading Bridge",
+    "meta_description": "Cancellations &amp; Rescheduling - Specialist SEND and Homeschool Tutoring",
+    "section_id": "cancellations",
+    "draft_tag": "DRAFT",
+    "heading": "Cancellations &amp; Rescheduling",
+    "sections": [
+      {
+        "heading": "",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "We understand that plans can change. To help us manage our time and reserve your booking slot, we ask that parents and carers give clear notice if a session needs to be cancelled or rescheduled."
+          }
+        ]
+      },
+      {
+        "heading": "1. Cancellation &amp; Rescheduling Notice",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "All cancellations or rescheduling must be notified at least <strong>24 hours</strong> in advance of the booked session. Notice is given by email or text message to 07368 512670 or info@thereadingbridgesw.co.uk."
+          }
+        ]
+      },
+      {
+        "heading": "2. Late Cancellation or Non-Attendance",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "If a session is cancelled with less than 24 hours' notice, or if a booked session is not attended (\"no-show\"), the full fee for that session will be due. This policy allows us to reserve the time for your child even when it cannot be used."
+          }
+        ]
+      },
+      {
+        "heading": "3. Our Cancellations",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "If we need to cancel or reschedule a session on our side, we will give you as much notice as possible and will offer a replacement session or a full refund, at your discretion."
+          }
+        ]
+      },
+      {
+        "heading": "4. Illness",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "If either you or your child is unwell, please let us know as soon as possible. Sessions may be rescheduled in line with the notice policy above."
+          }
+        ]
+      }
+    ]
+  },
+  "payment": {
+    "page_title": "Payment Terms &middot; The Reading Bridge",
+    "meta_description": "Payment Terms - Specialist SEND and Homeschool Tutoring",
+    "section_id": "payment",
+    "draft_tag": "DRAFT",
+    "heading": "Payment Terms",
+    "sections": [
+      {
+        "heading": "",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "We aim to make our payment arrangements simple and transparent. This Payment Terms policy sets out how fees are calculated, when payment is due and the methods available to you."
+          }
+        ]
+      },
+      {
+        "heading": "1. Fees",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Details of our session fees are set out in our pricing information and on request. Fees may be reviewed from time to time; you will be given reasonable notice before any change to fees takes effect."
+          }
+        ]
+      },
+      {
+        "heading": "2. Invoicing &amp; Payment Schedule",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Invoices are issued in advance of booked sessions unless otherwise agreed in writing. Payment is expected in line with the terms agreed at the start of each period of tuition."
+          }
+        ]
+      },
+      {
+        "heading": "3. Payment Methods",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "We accept payment by bank transfer. Full payment details are provided on request or on your invoice."
+          }
+        ]
+      },
+      {
+        "heading": "4. Late or Non-Payment",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "If payment is not received by the due date, we will contact you to arrange settlement. Sessions may be paused until outstanding balances are settled, at our discretion."
+          }
+        ]
+      },
+      {
+        "heading": "",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "For any questions about fees or payment, please contact us at info@thereadingbridgesw.co.uk."
+          }
+        ]
+      }
+    ]
+  }
+}

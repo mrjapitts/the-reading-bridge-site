@@ -32,3 +32,15 @@
 
 # content source only the build needs (site.json stays reachable)
 /content/policies.json   /404-not-found  404!
+
+# TEMPORARY - the CMS is closed until Identity registration is invite-only.
+#
+# Why: registration is currently OPEN (Identity disable_signup = false) and Git
+# Gateway has no Roles restriction, so "any logged in user" means "anyone who
+# registers". Anyone who found this path could create an account and edit the
+# live site, committing through the gateway into the repo.
+#
+# REMOVE THIS RULE once Identity -> Settings -> Registration is set to
+# "Invite only" (the detail on the rule's status code matters: Netlify only
+# applies a redirect over an existing static file when forced with 404!).
+/admin/*                 /404-not-found  404!

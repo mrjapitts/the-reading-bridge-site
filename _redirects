@@ -1,9 +1,23 @@
 # Netlify redirect / access rules
 #
-# The repository root IS the publish directory (netlify.toml: publish = "."),
-# which puts .git/ inside the deployed tree. Netlify normally strips it, but
-# this is a belt-and-braces guard so repository internals can never be fetched
-# over HTTP whatever the host does with dotfiles.
+# The publish directory IS the repository root (netlify.toml: publish = "."),
+# so repository-only files would otherwise be readable over HTTP. They are not
+# part of the website and must not be served.
 #
-# Anything under /.git/ returns 404 rather than being served.
-/.git/*  /  404
+# /content/site.json is deliberately NOT blocked: main.js fetches it at runtime
+# for the header and footer. /admin/* is not blocked either - that is the CMS.
+
+# Repository documentation (this is the file that described a different business)
+/readme.md         /404-not-found  404
+/README.md         /404-not-found  404
+
+# The build toolchain: generator, templates, notes
+/build/*           /404-not-found  404
+
+# Git internals
+/.git/*            /404-not-found  404
+/.gitattributes    /404-not-found  404
+/.gitignore        /404-not-found  404
+
+# Content source that only the build needs (site.json stays reachable)
+/content/policies.json  /404-not-found  404

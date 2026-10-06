@@ -1,23 +1,32 @@
 # Netlify redirect / access rules
 #
-# The publish directory IS the repository root (netlify.toml: publish = "."),
-# so repository-only files would otherwise be readable over HTTP. They are not
-# part of the website and must not be served.
+# The publish directory IS the repository root (netlify.toml: publish = "."), so
+# repository-only files would otherwise be readable over HTTP.
 #
-# /content/site.json is deliberately NOT blocked: main.js fetches it at runtime
-# for the header and footer. /admin/* is not blocked either - that is the CMS.
+# The leading '!' on each rule is REQUIRED and is easy to miss: Netlify does not
+# apply a redirect to a path that already exists as a static file unless the rule
+# is forced. Without it these rules match but the file is still served.
+#
+# /content/site.json is deliberately NOT blocked: main.js fetches it at runtime for
+# the header and footer. /admin/* is the CMS and stays reachable.
 
-# Repository documentation (this is the file that described a different business)
-/readme.md         /404-not-found  404
-/README.md         /404-not-found  404
+# repository documentation (the file describing a different business)
+!/readme.md               /404-not-found  404
 
-# The build toolchain: generator, templates, notes
-/build/*           /404-not-found  404
+# repository documentation, upper-case path
+!/README.md               /404-not-found  404
 
-# Git internals
-/.git/*            /404-not-found  404
-/.gitattributes    /404-not-found  404
-/.gitignore        /404-not-found  404
+# the build toolchain: generator, templates, notes
+!/build/*                 /404-not-found  404
 
-# Content source that only the build needs (site.json stays reachable)
-/content/policies.json  /404-not-found  404
+# git internals
+!/.git/*                  /404-not-found  404
+
+# git config file
+!/.gitattributes          /404-not-found  404
+
+# git config file
+!/.gitignore              /404-not-found  404
+
+# content source only the build needs; site.json must stay reachable
+!/content/policies.json   /404-not-found  404

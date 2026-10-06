@@ -5,7 +5,7 @@
     <div class="section-head"><h2>{{ site.area_section.heading }}</h2></div>
     <p class="lead">{{ site.area_section.text }}</p>
     <div class="grid grid-3 mt-15">{% for item in site.area_section.cards %}<div class="card"><h3>{{ item.name }}</h3><p class="micro">{{ item.text }}</p></div>{% endfor %}</div>
-    <p class="center mt-2"><a class="btn btn-primary" href="book.html">{{ site.cta.book_free_session }}</a></p>
+    <p class="center mt-2"><a class="btn btn-primary" href="{% if site.cta.booking_url %}{{ site.cta.booking_url }}{% else %}book.html{% endif %}"{% if site.cta.booking_url %} target="_blank" rel="noopener"{% endif %}>{{ site.cta.book_free_session }}</a></p>
   </div>
 </section>
 </main>

@@ -14,7 +14,7 @@
     <h3>{{ site.pages.assessment.prep_heading }}</h3>
     <ul class="checklist">{% for item in site.assessment.prep %}<li><strong>{{ item.title }}</strong><span>{{ item.text }}</span></li>{% endfor %}</ul>
     <p>{{ site.assessment.next_steps }}</p>
-    <p class="mt-1"><a class="btn btn-primary" href="book.html">{{ site.cta.book_free_session }}</a></p>
+    <p class="mt-1"><a class="btn btn-primary" href="{% if site.cta.booking_url %}{{ site.cta.booking_url }}{% else %}book.html{% endif %}"{% if site.cta.booking_url %} target="_blank" rel="noopener"{% endif %}>{{ site.cta.book_free_session }}</a></p>
   </div>
 </section>
 </main>

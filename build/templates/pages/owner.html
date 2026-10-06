@@ -9,7 +9,7 @@
         <p>{{ site.owner.bio_intro }}</p>
         <p>{{ site.owner.bio_extra }}</p>
         <p class="micro">{{ site.owner.signature }}</p>
-        <p class="mt-1"><a class="btn btn-navy" href="book.html">{{ site.cta.book_free_session }}</a></p>
+        <p class="mt-1"><a class="btn btn-navy" href="{% if site.cta.booking_url %}{{ site.cta.booking_url }}{% else %}book.html{% endif %}"{% if site.cta.booking_url %} target="_blank" rel="noopener"{% endif %}>{{ site.cta.book_free_session }}</a></p>
       </div>
     </div>
   </div>

@@ -260,6 +260,7 @@ collections:
         fields:
           - { label: "Book a Free Session button", name: "book_free_session", widget: "string" }
           - { label: "Our Services button", name: "our_services", widget: "string" }
+          - { label: "Online booking link (Koalendar)", name: "booking_url", widget: "string", hint: "Paste the full Koalendar booking page URL. When set, every 'Book a Free Session' button opens it in a new tab; leave blank to keep the enquiry form." }
 
       # ================= POLICIES (labels + shared notice) =================
       - label: "Policy labels (footer links, page names, DRAFT notice)"

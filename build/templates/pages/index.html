@@ -7,7 +7,7 @@
     <p class="lead">{{ site.hero.subheadline }}</p>
     <p class="hero supporting">{{ site.hero.supporting_text }}</p>
     <div class="hero-actions">
-      <a class="btn btn-primary" href="{{ site.hero.primary_button.href }}">{{ site.hero.primary_button.label }}</a>
+      <a class="btn btn-primary" href="{% if site.cta.booking_url %}{{ site.cta.booking_url }}{% else %}{{ site.hero.primary_button.href }}{% endif %}"{% if site.cta.booking_url %} target="_blank" rel="noopener"{% endif %}>{{ site.hero.primary_button.label }}</a>
       <a class="btn btn-secondary" href="{{ site.hero.secondary_button.href }}">{{ site.hero.secondary_button.label }}</a>
     </div>
   </div>
@@ -53,7 +53,7 @@
     <h2>{{ site.pages.index.cta_heading }}</h2>
     <p class="lead">{{ site.pages.index.cta_lead }}</p>
     <div class="hero-actions center-actions">
-      <a class="btn btn-primary" href="book.html">{{ site.cta.book_free_session }}</a>
+      <a class="btn btn-primary" href="{% if site.cta.booking_url %}{{ site.cta.booking_url }}{% else %}book.html{% endif %}"{% if site.cta.booking_url %} target="_blank" rel="noopener"{% endif %}>{{ site.cta.book_free_session }}</a>
       <a class="btn btn-navy" href="services.html">{{ site.cta.our_services }}</a>
     </div>
   </div>

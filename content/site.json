@@ -315,7 +315,8 @@
   },
   "cta": {
     "book_free_session": "Book a Free Session",
-    "our_services": "Our Services"
+    "our_services": "Our Services",
+    "booking_url": ""
   },
   "footer": {
     "site_heading": "Site",

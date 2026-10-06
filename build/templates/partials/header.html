@@ -10,7 +10,7 @@
     <button class="nav-toggle" aria-label="{{ site.chrome.nav_toggle_label }}" aria-expanded="false">{{ site.chrome.nav_toggle_text }}</button>
     <nav class="nav-links" id="nav-links" aria-label="{{ site.chrome.nav_aria_label }}">
       {% for item in site.nav %}<a href="{{ page.prefix }}{{ item.href }}"{% if item.href == page.id %} class="active"{% endif %}>{{ item.label }}</a>{% endfor %}
-      <a class="btn btn-primary" href="{{ page.prefix }}book.html">{{ site.cta.book_free_session }}</a>
+      <a class="btn btn-primary" href="{% if site.cta.booking_url %}{{ site.cta.booking_url }}{% else %}{{ page.prefix }}book.html{% endif %}"{% if site.cta.booking_url %} target="_blank" rel="noopener"{% endif %}>{{ site.cta.book_free_session }}</a>
     </nav>
   </div>
 </header>

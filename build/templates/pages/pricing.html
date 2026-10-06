@@ -12,7 +12,7 @@
   <p class="format">{{ item.per }}</p>
   <p class="micro">{{ item.note }}</p>
 </div>{% endfor %}</div>
-    <p class="center mt-2"><a class="btn btn-navy" href="book.html">{{ site.pricing.call_to_action }}</a></p>
+    <p class="center mt-2"><a class="btn btn-navy" href="{% if site.cta.booking_url %}{{ site.cta.booking_url }}{% else %}book.html{% endif %}"{% if site.cta.booking_url %} target="_blank" rel="noopener"{% endif %}>{{ site.pricing.call_to_action }}</a></p>
   </div>
 </section>
 </main>

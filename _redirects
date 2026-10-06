@@ -1,32 +1,34 @@
 # Netlify redirect / access rules
 #
 # The publish directory IS the repository root (netlify.toml: publish = "."), so
-# repository-only files would otherwise be readable over HTTP.
+# repository-only files would otherwise be readable over HTTP. They are not part of
+# the website and must not be served.
 #
-# The leading '!' on each rule is REQUIRED and is easy to miss: Netlify does not
-# apply a redirect to a path that already exists as a static file unless the rule
-# is forced. Without it these rules match but the file is still served.
+# The trailing '!' on the STATUS CODE is required to force the rule past an existing
+# static file. Netlify's shadowing behaviour means a redirect is otherwise ignored
+# whenever a file matches the path. Syntax documented at
+# docs.netlify.com/manage/routing/redirects/redirect-options#force-redirects
 #
 # /content/site.json is deliberately NOT blocked: main.js fetches it at runtime for
 # the header and footer. /admin/* is the CMS and stays reachable.
 
-# repository documentation (the file describing a different business)
-!/readme.md               /404-not-found  404
+# repository documentation - the file describing a different business
+/readme.md               /404-not-found  404!
 
-# repository documentation, upper-case path
-!/README.md               /404-not-found  404
+# same file, upper-case path
+/README.md               /404-not-found  404!
 
-# the build toolchain: generator, templates, notes
-!/build/*                 /404-not-found  404
+# build toolchain: generator, templates, notes
+/build/*                 /404-not-found  404!
 
 # git internals
-!/.git/*                  /404-not-found  404
+/.git/*                  /404-not-found  404!
 
 # git config file
-!/.gitattributes          /404-not-found  404
+/.gitattributes          /404-not-found  404!
 
 # git config file
-!/.gitignore              /404-not-found  404
+/.gitignore              /404-not-found  404!
 
-# content source only the build needs; site.json must stay reachable
-!/content/policies.json   /404-not-found  404
+# content source only the build needs (site.json stays reachable)
+/content/policies.json   /404-not-found  404!

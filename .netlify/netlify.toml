@@ -6,7 +6,7 @@ plugins = []
 [functions."*"]
 
 [build]
-publish = "E:\\2_nichola\\site"
+publish = "."
 publishOrigin = "config"
 commandOrigin = "config"
 command = "python3 build/generate.py"

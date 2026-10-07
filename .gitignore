@@ -1,3 +1,41 @@
-# Python bytecode produced by build/generate.py
+# Secrets and local environment
+.env
+.env.*
+!.env.example
+
+# Python/tool caches
 __pycache__/
-*.pyc
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.cache/
+
+# Test and coverage output
+.coverage
+.coverage.*
+coverage.xml
+coverage/
+htmlcov/
+test-results/
+junit.xml
+
+# Local databases and logs
+*.db
+*.db-journal
+*.sqlite
+*.sqlite3
+*.log
+
+# Local build/scratch output (build/ is tracked generator source)
+dist/
+site-output/
+tmp/
+
+# Worktree-local operational state and QA handoffs
+.nichola-state/
+.worktree-state/
+
+# Netlify CLI local state; retain the intentional tracked local config
+.netlify/*
+!.netlify/netlify.toml

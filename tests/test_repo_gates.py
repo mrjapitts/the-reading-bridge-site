@@ -1,8 +1,12 @@
+import contextlib
+import io
 import json
 import os
 import tempfile
 import unittest
 from pathlib import Path
+from types import SimpleNamespace
+from unittest import mock
 
 from scripts import qa_approval, repo_gate
 
@@ -64,7 +68,15 @@ class ApprovalTests(unittest.TestCase):
         self.addCleanup(self.tmp.cleanup)
         self.approval = Path(self.tmp.name) / "approval.json"
 
-    def write_approval(self, sha="a" * 40, issuer="minerva_qa"):
+    def write_approval(
+        self,
+        sha="a" * 40,
+        issuer="minerva_qa",
+        issued_at_utc="2026-10-08T10:00:00Z",
+        evidence=None,
+    ):
+        if evidence is None:
+            evidence = ["python scripts/repo_gate.py: PASS"]
         self.approval.write_text(
             json.dumps(
                 {
@@ -72,8 +84,8 @@ class ApprovalTests(unittest.TestCase):
                     "integration_sha": sha,
                     "issuer_profile": issuer,
                     "decision": "approved",
-                    "evidence": ["python scripts/repo_gate.py: PASS"],
-                    "issued_at_utc": "2026-10-08T10:00:00Z",
+                    "evidence": evidence,
+                    "issued_at_utc": issued_at_utc,
                     "identity_assurance": "policy-attestation-only",
                 }
             ),
@@ -93,6 +105,31 @@ class ApprovalTests(unittest.TestCase):
         self.write_approval()
         result = qa_approval.check_approval(self.approval, "a" * 40)
         self.assertEqual(result["identity_assurance"], "policy-attestation-only")
+
+    def test_canonical_rfc3339_utc_timestamp_passes(self):
+        self.write_approval(issued_at_utc="2024-02-29T23:59:59Z")
+        result = qa_approval.check_approval(self.approval, "a" * 40)
+        self.assertEqual(result["issued_at_utc"], "2024-02-29T23:59:59Z")
+
+    def test_noncanonical_or_invalid_timestamp_fails(self):
+        invalid_timestamps = (
+            "2026-02-29T10:00:00Z",
+            "2026-10-08T10:00:00+00:00",
+            "2026-10-08T10:00:00.000Z",
+            "2026-10-08 10:00:00Z",
+        )
+        for timestamp in invalid_timestamps:
+            with self.subTest(timestamp=timestamp):
+                self.write_approval(issued_at_utc=timestamp)
+                with self.assertRaisesRegex(qa_approval.ApprovalFailure, "issued_at_utc"):
+                    qa_approval.check_approval(self.approval, "a" * 40)
+
+    def test_evidence_items_must_be_nonempty_trimmed_strings(self):
+        for evidence in ([""], ["   "], [123], ["pass", None]):
+            with self.subTest(evidence=evidence):
+                self.write_approval(evidence=evidence)
+                with self.assertRaisesRegex(qa_approval.ApprovalFailure, "evidence"):
+                    qa_approval.check_approval(self.approval, "a" * 40)
 
     def test_non_minerva_issuer_fails(self):
         self.write_approval(issuer="atlas_operations")
@@ -134,6 +171,77 @@ class ApprovalTests(unittest.TestCase):
             Path("E:/2_nichola-worktrees/minerva_qa/.nichola-state/approval.json"),
             ignored=True,
         )
+
+    def test_external_creation_does_not_invoke_git_check_ignore(self):
+        repo = Path(self.tmp.name) / "repo"
+        output = Path(self.tmp.name) / "handoff" / "approval.json"
+        repo.mkdir()
+        sha = "a" * 40
+        with (
+            mock.patch.object(qa_approval, "MINERVA_ROOT", repo),
+            mock.patch.object(
+                qa_approval,
+                "_git",
+                side_effect=(str(repo), qa_approval.MINERVA_BRANCH, sha),
+            ),
+            mock.patch.object(qa_approval.subprocess, "run") as run_mock,
+        ):
+            qa_approval.create_approval(output, sha, ["gate: PASS"])
+        run_mock.assert_not_called()
+        self.assertTrue(output.is_file())
+
+    def test_ignored_in_repo_creation_invokes_git_check_ignore(self):
+        repo = Path(self.tmp.name) / "repo"
+        output = repo / ".nichola-state" / "approval.json"
+        repo.mkdir()
+        sha = "a" * 40
+        with (
+            mock.patch.object(qa_approval, "MINERVA_ROOT", repo),
+            mock.patch.object(
+                qa_approval,
+                "_git",
+                side_effect=(str(repo), qa_approval.MINERVA_BRANCH, sha),
+            ),
+            mock.patch.object(
+                qa_approval.subprocess,
+                "run",
+                return_value=SimpleNamespace(returncode=0),
+            ) as run_mock,
+        ):
+            qa_approval.create_approval(output, sha, ["gate: PASS"])
+        run_mock.assert_called_once()
+        self.assertTrue(output.is_file())
+
+
+class RepositoryGateMainTests(unittest.TestCase):
+    def test_approval_failures_are_reported_once_without_traceback(self):
+        root = Path.cwd()
+        for message in (
+            "QA approval is missing: MISSING",
+            "QA approval does not match the exact integration SHA",
+        ):
+            with self.subTest(message=message):
+                stderr = io.StringIO()
+                with (
+                    mock.patch.object(
+                        repo_gate.subprocess,
+                        "run",
+                        return_value=SimpleNamespace(stdout=str(root)),
+                    ),
+                    mock.patch.object(
+                        repo_gate,
+                        "repository_gate",
+                        side_effect=qa_approval.ApprovalFailure(message),
+                    ),
+                    contextlib.redirect_stderr(stderr),
+                ):
+                    result = repo_gate.main(["--promotion-approval", "approval.json"])
+                self.assertEqual(result, 1)
+                self.assertEqual(
+                    stderr.getvalue(),
+                    "REPOSITORY-GATE: FAILED — %s\n" % message,
+                )
+                self.assertNotIn("Traceback", stderr.getvalue())
 
 
 if __name__ == "__main__":

@@ -19,6 +19,7 @@ SCHEMA = "nichola.qa-approval/v1"
 MINERVA_ROOT = Path("E:/2_nichola-worktrees/minerva_qa")
 MINERVA_BRANCH = "validation/nichola-minerva"
 SHA_RE = re.compile(r"^[0-9a-f]{40}$")
+UTC_TIMESTAMP_RE = re.compile(r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$")
 
 
 class ApprovalFailure(RuntimeError):
@@ -41,11 +42,14 @@ def enforce_generation_authority(repo_root, branch):
         )
 
 
-def enforce_safe_output_location(repo_root, output_path, ignored):
+def _is_within_repo(repo_root, path):
     root = _normal(repo_root).rstrip("/")
-    output = _normal(output_path)
-    inside = output == root or output.startswith(root + "/")
-    if inside and not ignored:
+    candidate = _normal(path)
+    return candidate == root or candidate.startswith(root + "/")
+
+
+def enforce_safe_output_location(repo_root, output_path, ignored):
+    if _is_within_repo(repo_root, output_path) and not ignored:
         raise ApprovalFailure(
             "approval output must remain outside tracked history (external or Git-ignored)"
         )
@@ -82,6 +86,17 @@ def check_approval(path, expected_sha):
         raise ApprovalFailure("identity assurance must disclose policy-attestation-only")
     if not isinstance(payload["evidence"], list) or not payload["evidence"]:
         raise ApprovalFailure("QA approval evidence must be a non-empty list")
+    if any(not isinstance(item, str) or not item.strip() for item in payload["evidence"]):
+        raise ApprovalFailure("QA approval evidence items must be non-empty strings")
+    issued_at_utc = payload["issued_at_utc"]
+    if not isinstance(issued_at_utc, str) or not UTC_TIMESTAMP_RE.fullmatch(issued_at_utc):
+        raise ApprovalFailure(
+            "QA approval issued_at_utc must use canonical YYYY-MM-DDTHH:MM:SSZ format"
+        )
+    try:
+        dt.datetime.strptime(issued_at_utc, "%Y-%m-%dT%H:%M:%SZ")
+    except ValueError as exc:
+        raise ApprovalFailure("QA approval issued_at_utc is not a real UTC timestamp") from exc
     validate_sha(payload["integration_sha"])
     if payload["integration_sha"] != expected_sha:
         raise ApprovalFailure(
@@ -105,9 +120,11 @@ def create_approval(path, integration_sha, evidence):
     if _git("rev-parse", "HEAD") != integration_sha:
         raise ApprovalFailure("Minerva HEAD must equal the exact integration SHA being approved")
     path = Path(path).absolute()
-    ignored = subprocess.run(
-        ["git", "check-ignore", "-q", os.fspath(path)], cwd=root, check=False
-    ).returncode == 0
+    ignored = False
+    if _is_within_repo(root, path):
+        ignored = subprocess.run(
+            ["git", "check-ignore", "-q", os.fspath(path)], cwd=root, check=False
+        ).returncode == 0
     enforce_safe_output_location(root, path, ignored)
     payload = {
         "schema": SCHEMA,

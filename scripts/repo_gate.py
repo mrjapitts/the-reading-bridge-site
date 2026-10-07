@@ -14,9 +14,9 @@ from pathlib import Path
 from urllib.parse import unquote, urlsplit
 
 try:
-    from scripts.qa_approval import check_approval
+    from scripts.qa_approval import ApprovalFailure, check_approval
 except ModuleNotFoundError:  # Direct execution places scripts/, not repo root, on sys.path.
-    from qa_approval import check_approval
+    from qa_approval import ApprovalFailure, check_approval
 
 APPROVED = {
     "task/nichola-vulcan-gates": Path("E:/2_nichola-worktrees/vulcan_pycraft"),
@@ -222,7 +222,15 @@ def main(argv=None):
             raise GateFailure("run the gate from the repository root")
         repository_gate(root, args.promotion_approval)
         return 0
-    except (GateFailure, OSError, UnicodeError, json.JSONDecodeError, tomllib.TOMLDecodeError, subprocess.CalledProcessError) as exc:
+    except (
+        ApprovalFailure,
+        GateFailure,
+        OSError,
+        UnicodeError,
+        json.JSONDecodeError,
+        tomllib.TOMLDecodeError,
+        subprocess.CalledProcessError,
+    ) as exc:
         print("REPOSITORY-GATE: FAILED — %s" % exc, file=sys.stderr)
         return 1
 

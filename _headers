@@ -28,8 +28,8 @@
 #
 # Every relaxation below exists for a specific, named reason:
 #   script-src 'self'                 admin/index.html has no inline script:
-#                                     all four scripts are files under /admin/
-#                                     (two vendored, two ours).
+#                                     its single script is the vendored Decap
+#                                     bundle under /admin/vendor/.
 #   script-src 'unsafe-eval'          Decap's bundled AJV schema compiler builds
 #                                     its validators with `new Function(...)`
 #                                     (verified inside the vendored bundle).

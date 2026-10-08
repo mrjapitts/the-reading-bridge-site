@@ -34,6 +34,43 @@ There is no package manifest, npm project, type-checker configuration, server
 runtime, database migration system, or application API in this static-site
 repository; those gates are intentionally not invented.
 
+## Admin CMS gate (blank-/admin/ regression)
+
+```sh
+python scripts/browser_smoke.py
+```
+
+`/admin/` once served a blank page: `admin/index.html` set
+`window.CMS_MANUAL_INIT` (so the vendored Decap bundle logged "skipping
+automatic initialization" and never started) and then called
+`window.yaml.load`, while the vendored js-yaml exports `window.jsyaml`.
+`admin/config.yml` also gave a collection an invalid singular top-level
+`file:` key. The fix is Decap's standard automatic initialization: one script
+element, no manual bootstrap, `files:`-shaped collections.
+
+This gate drives a real local Chrome over the repository's own vendored bundle
+(it is also part of `python -m unittest discover -s tests`). An ephemeral
+loopback server serves the repository; nothing is installed, no third-party
+host is contacted and no deploy tooling is invoked. It fails unless:
+
+1. the admin page loads only `vendor/decap-cms.js` and never sets
+   `window.CMS_MANUAL_INIT`;
+2. the vendored bundle starts, fetches `admin/config.yml` itself and renders a
+   non-empty UI (no config-error screen, no uncaught JS exception, no
+   config/collection console complaint);
+3. the shipped config parses, through the repository's vendored js-yaml, into
+   two collections with unique names and labels, each declaring exactly one of
+   `files:` or `folder:`, targeting `content/site.json` and
+   `content/policies.json`;
+4. `identity-redirect.js` still routes `#invite_token`, `#confirmation_token`,
+   `#recovery_token` and `#email_change_token` hashes to `/admin/` with the
+   token key and value intact, while ordinary visits and hashes are untouched.
+
+Evidence (report plus a screenshot of the rendered admin page) is written to
+`--out` (a temporary directory by default). Residual gap: Netlify Identity's
+actual consumption of an invite/recovery token needs the live Netlify service,
+so only the routing and preservation of the token are exercised here.
+
 ## Exact-integration-SHA QA approval
 
 Approval is a JSON operational artifact outside tracked history. It is a

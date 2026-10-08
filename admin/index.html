@@ -6,33 +6,27 @@
   <title>Content editor — The Reading Bridge</title>
   <!--
     Decap CMS is served from this folder, never from a CDN: vendor/ holds the
-    complete decap-cms@3.16.3 distribution (the entry bundle, its 94 lazy
-    chunks, its WebAssembly encoder and the empty cms.css placeholder) plus
-    js-yaml@4.1.0. Nothing on this page contacts unpkg.com or any other
-    third-party host.
+    complete decap-cms@3.16.3 distribution (the entry bundle, its lazy chunks,
+    its WebAssembly encoder and the empty cms.css placeholder). Decap fetches
+    admin/config.yml itself and initializes itself using its standard automatic
+    startup.
+
+    Exactly one script element belongs on this page. Do NOT add a bootstrap
+    script here: setting window.CMS_MANUAL_INIT makes the bundle log "skipping
+    automatic initialization" and never start, which leaves /admin/ blank, and
+    there is no YAML helper on window for a hand-rolled loader to use (the
+    vendored js-yaml exports window.jsyaml). That combination was the original
+    blank-admin defect; tests/test_admin_cms.py and scripts/browser_smoke.py now
+    fail if it returns.
 
     vendor/cms.css is deliberately empty: Decap 2.0+ moved from static CSS to
     CSS-in-JS and injects its own <style> elements at runtime. That is why the
     /admin/* CSP allows style-src 'unsafe-inline' — the public pages do not.
-
-    There are no inline script elements on this page: each script is a
-    separate file under /admin/, so /admin/* needs no
-    script-src 'unsafe-inline'. Do not inline them again.
   -->
   <link rel="stylesheet" href="vendor/cms.css" />
 </head>
 <body>
-  <!-- 1. Tell Decap not to start until we have fed it our config.
-          MUST run before decap-cms.js. -->
-  <script src="admin-init.js"></script>
-
-  <!-- 2. The Decap CMS app (vendored, with its lazy chunks alongside). -->
+  <!-- Decap loads admin/config.yml and initializes automatically. -->
   <script src="vendor/decap-cms.js"></script>
-
-  <!-- 3. Small free helper to read the YAML config file. -->
-  <script src="vendor/js-yaml.min.js"></script>
-
-  <!-- 4. Load the config, then start the editor. -->
-  <script src="admin-boot.js"></script>
 </body>
 </html>
